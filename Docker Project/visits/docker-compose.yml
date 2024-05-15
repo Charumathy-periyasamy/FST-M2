@@ -1,0 +1,15 @@
+version: '3'
+services:
+  redis_db:
+    image: "redis"
+    volumes:
+      - ./data:/data
+      - ./:/usr/app
+    command: ["redis-server","--save","1 1"]  
+  node_app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: "charumathyp/visits"
+    ports:
+        - "8081:8081"
